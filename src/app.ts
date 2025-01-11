@@ -1,7 +1,6 @@
-import express from 'express';
+import 'dotenv/config';
+import Server from './shared/infrastructure/server/server';
 
-const app = express();
+const server = new Server();
 
-app.listen(3000, () => {
-  console.log('Sevicio arriba');
-});
+server.listen();
