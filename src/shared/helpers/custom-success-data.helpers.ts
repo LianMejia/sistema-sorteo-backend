@@ -15,7 +15,5 @@ export const customSuccessData = (
     response.data = data;
   }
 
-  console.log('data', data);
-
   return res.status(status).json(response);
 };

@@ -10,7 +10,6 @@ const validateFields = (
   // luego de ser validados y alamcenados en req por check
   const errors = validationResult(req);
 
-  console.log('errors',errors);
   // Si error no esta vacio
   if (!errors.isEmpty()) {
     res.status(400).json({

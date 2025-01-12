@@ -85,8 +85,6 @@ export class CountryRepositoryImpl implements CountryRepository {
     const result = await pool.query<Country>(query, value);
     const deletedCountry = result.rows[0];
 
-    console.log('deletedCountry', deletedCountry);
-
     return deletedCountry;
   }
 }
