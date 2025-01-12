@@ -1,13 +1,4 @@
 import {
-  CreateCityUseCase,
-  DeleteCityUseCase,
-  GetAllCitiesUseCase,
-  GetOneCityUseCase,
-  UpdateCityUseCase,
-} from '@/city/Application';
-import { CityController } from '@/city/infrastructure/controller';
-import { CityRepositoryImpl } from '@/city/infrastructure/repository';
-import {
   CountryController,
   CountryRepositoryImpl,
   CreateCountryUseCase,
@@ -16,6 +7,25 @@ import {
   UpdateCountryUseCase,
   DeleteCountryUseCase,
 } from '@/country';
+import {
+  CreateCityUseCase,
+  DeleteCityUseCase,
+  GetAllCitiesUseCase,
+  GetOneCityUseCase,
+  UpdateCityUseCase,
+} from '@/city/Application';
+import { CityController } from '@/city/infrastructure/controller';
+import { CityRepositoryImpl } from '@/city/infrastructure/repository';
+
+import {
+  CreateUserUseCase,
+  GetAllUsersUseCase,
+  GetOneUserUseCase,
+  UpdateUserUseCase,
+} from '@/user/application';
+import { UserController } from '@/user/infrastructure/controller/user.controller';
+import { UserRepositoryImpl } from '@/user/infrastructure/repository/user.repository.impl';
+
 import { InjectionMode, asClass, createContainer } from 'awilix';
 
 const container = createContainer({
@@ -69,5 +79,22 @@ container.register('updateCityUseCase', asClass(UpdateCityUseCase).singleton());
 container.register('deleteCityUseCase', asClass(DeleteCityUseCase).singleton());
 
 container.register('cityController', asClass(CityController).singleton());
+
+// User
+
+container.register('userRepository', asClass(UserRepositoryImpl).singleton());
+
+container.register(
+  'getAllUsersUseCase',
+  asClass(GetAllUsersUseCase).singleton()
+);
+
+container.register('getOneUserUseCase', asClass(GetOneUserUseCase).singleton());
+
+container.register('createUserUseCase', asClass(CreateUserUseCase).singleton());
+
+container.register('updateUserUseCase', asClass(UpdateUserUseCase).singleton());
+
+container.register('userController', asClass(UserController).singleton());
 
 export const diContainer = container;

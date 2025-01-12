@@ -48,10 +48,10 @@ export class CityRepositoryImpl implements CityRepository {
       values.push(partialCity.is_active);
     }
 
-    // Si no hay campos para actualizar, retornamos el país sin modificar
+    // Si no hay campos para actualizar, retornamos la ciudad sin modificar
     if (fields.length === 0) {
-      const country = await this.getOne(id);
-      return country;
+      const city = await this.getOne(id);
+      return city;
     }
 
     // Agregamos el ID al final de los valores
@@ -63,8 +63,8 @@ export class CityRepositoryImpl implements CityRepository {
     } RETURNING *;`;
 
     const result = await pool.query<City>(query, values);
-    const updateCountry = result.rows[0];
-    return updateCountry;
+    const updateCity = result.rows[0];
+    return updateCity;
   }
 
   async delete(id: string): Promise<City> {

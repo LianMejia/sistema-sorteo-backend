@@ -8,7 +8,7 @@ import {
   UpdateCountryUseCase,
 } from '@/country/application';
 import { Country } from '@/country/domain';
-import { customSuccessData } from '@/shared/helpers';
+import { customSuccessData } from '@/shared';
 import CustomErrorMessage from '@/shared/helpers/custom-error-message.helpers';
 
 export class CountryController {
