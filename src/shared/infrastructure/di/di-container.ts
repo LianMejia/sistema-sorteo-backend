@@ -27,6 +27,21 @@ import { UserController } from '@/user/infrastructure/controller/user.controller
 import { UserRepositoryImpl } from '@/user/infrastructure/repository/user.repository.impl';
 
 import { InjectionMode, asClass, createContainer } from 'awilix';
+import {
+  CreateCategoryUseCase,
+  DeleteCategoryUseCase,
+  GetAllCategoriesUseCase,
+  GetOneCategoryUseCase,
+  UpdateCategoryUseCase,
+} from '@/category/application';
+
+import {
+  CategoryController,
+} from '@/category/infrastructure/controller';
+
+import {
+  CategoryRepositoryImpl
+} from '@/category/infrastructure/repository';
 
 const container = createContainer({
   injectionMode: InjectionMode.CLASSIC,
@@ -96,5 +111,42 @@ container.register('createUserUseCase', asClass(CreateUserUseCase).singleton());
 container.register('updateUserUseCase', asClass(UpdateUserUseCase).singleton());
 
 container.register('userController', asClass(UserController).singleton());
+
+// Category
+
+container.register(
+  'categoryRepository',
+  asClass(CategoryRepositoryImpl).singleton()
+);
+
+container.register(
+  'getAllCategoriesUseCase',
+  asClass(GetAllCategoriesUseCase).singleton()
+);
+
+container.register(
+  'getOneCategoryUseCase',
+  asClass(GetOneCategoryUseCase).singleton()
+);
+
+container.register(
+  'createCategoryUseCase',
+  asClass(CreateCategoryUseCase).singleton()
+);
+
+container.register(
+  'updateCategoryUseCase',
+  asClass(UpdateCategoryUseCase).singleton()
+);
+
+container.register(
+  'deleteCategoryUseCase',
+  asClass(DeleteCategoryUseCase).singleton()
+);
+
+container.register(
+  'categoryController',
+  asClass(CategoryController).singleton()
+);
 
 export const diContainer = container;
