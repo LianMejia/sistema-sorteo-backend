@@ -35,13 +35,19 @@ import {
   UpdateCategoryUseCase,
 } from '@/category/application';
 
-import {
-  CategoryController,
-} from '@/category/infrastructure/controller';
+import { CategoryController } from '@/category/infrastructure/controller';
+import { CategoryRepositoryImpl } from '@/category/infrastructure/repository';
 
 import {
-  CategoryRepositoryImpl
-} from '@/category/infrastructure/repository';
+  CreateSorteoUseCase,
+  DeleteSorteoUseCase,
+  GetAllSorteosUseCase,
+  GetOneSorteoUseCase,
+  UpdateSorteoUseCase,
+} from '@/sorteo/application';
+
+import { SorteoController } from '@/sorteo/infrastructure/controller';
+import { SorteoRepositoryImpl } from '@/sorteo/infrastructure/repository';
 
 const container = createContainer({
   injectionMode: InjectionMode.CLASSIC,
@@ -148,5 +154,39 @@ container.register(
   'categoryController',
   asClass(CategoryController).singleton()
 );
+
+// Sorteo
+
+container.register(
+  'sorteoRepository',
+  asClass(SorteoRepositoryImpl).singleton()
+);
+
+container.register(
+  'getAllSorteosUseCase',
+  asClass(GetAllSorteosUseCase).singleton()
+);
+
+container.register(
+  'getOneSorteoUseCase',
+  asClass(GetOneSorteoUseCase).singleton()
+);
+
+container.register(
+  'createSorteoUseCase',
+  asClass(CreateSorteoUseCase).singleton()
+);
+
+container.register(
+  'updateSorteoUseCase',
+  asClass(UpdateSorteoUseCase).singleton()
+);
+
+container.register(
+  'deleteSorteoUseCase',
+  asClass(DeleteSorteoUseCase).singleton()
+);
+
+container.register('sorteoController', asClass(SorteoController).singleton());
 
 export const diContainer = container;
